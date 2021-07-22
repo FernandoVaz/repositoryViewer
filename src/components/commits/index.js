@@ -1,11 +1,30 @@
 import styled from 'styled-components';
 
-//Componentes sempre comecam com titulo maiusculo
-const commits = styled.div`
-  background: rgba(0,0,0,0.8);
-  border-radius: 8px;
+export function CommitComponent(props) {
+  
+  if(props.list === 'undefined') {
+    props.list = [];
+  }
 
-  padding: 16px;
+  return (
+    <>
+      <CommitComponent.wrapper>
+      <ul className="commit-component">
+        {props.list.map((itemAtual) => {
+            return (
+              <li key={itemAtual.id}>
+                <a href={itemAtual.html_url} >
+                  <span>{itemAtual.full_name}</span>
+                </a>
+              </li>
+            )}
+          )}
+      </ul>
+      </CommitComponent.wrapper>
+    </>
+  )
+}
+CommitComponent.wrapper = styled.div`
+  background-color: #ffffff;
+  padding: 5px;
 `; 
-
-export default commits;

@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-
-
-
 // =======================================================================================================================
 // NAVBAR
 // =======================================================================================================================
@@ -17,13 +14,13 @@ export function NavbarRepoViewer() {
                          height="35" />
                 </li>
                 <li>
-                    <a href="">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="">TechMap</a>
+                    <a href="/techmap">TechMap</a>
                 </li>
                 <li>
-                    <a href="">Metrics</a>
+                    <a href="/metrics">Metrics</a>
                 </li>
             </ul>
         </NavbarRepoViewer.wrapper>

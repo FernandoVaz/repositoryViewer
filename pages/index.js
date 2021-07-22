@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import branch from '../src/components/branches';
-import { navbar, NavbarRepoViewer } from '../src/components/navbar'
+import { NavbarRepoViewer } from '../src/components/navbar'
+import { RepositoryComponent } from '../src/components/repository';
 
 const Main = styled.div`
   width: 100%;
@@ -14,39 +15,14 @@ const Main = styled.div`
   grid-template-columns: 0.5fr 1fr 0.5fr;
   .branchArea {
     display: block;
-    background-color: #ffffff;
   }
   .repoArea {
     display: block;
-    background-color: #ffffff;
   }
   .commitArea {
     display: block;
-    background-color: #ffffff;
   }
 `;
-
-
-function RepositoryComponent(props) {
-  
-  return (
-    <>
-      <h2>({props.list.length}) </h2>
-      <ul className="teste">
-        {props.list.map((itemAtual) => {
-            return (
-              <li key={itemAtual.id}>
-                <a href={itemAtual.html_url} >
-                  <img className="repo-owner-image" src={itemAtual.owner.avatar_url}/>
-                  <span>{itemAtual.full_name}</span>
-                </a>
-              </li>
-            )
-          })}
-      </ul>
-    </>
-  )
-}
 
 export default function Home() {
 
@@ -60,13 +36,27 @@ export default function Home() {
       .then(async (response) => {
         const dados = await response.json();
         console.log(dados);
-        setRepositories(dados.dados.items);
+        setRepositories(dados.dataResponse.repo.items);
+        setCommits(dados.dataResponse.commit)
       })
       .catch((e) => {
         console.log(e);
       })
   }, []);
   
+
+  // function buildSetCommits(repos) {
+  //   fetch('api/commit')
+  //   .then(async (response) => {
+  //     const dados = await response.json();
+  //     console.log(dados);
+  //   })
+  // }
+
+  // React.useEffect(function () {
+
+  // }, [repositories])
+
 
   return (
     <>
@@ -79,7 +69,7 @@ export default function Home() {
           <RepositoryComponent list={repositories} />
         </div>
         <div className="commitArea" style={{ gridArea: 'commitArea' }}>
-          c
+          
         </div>
       </Main>
     </>

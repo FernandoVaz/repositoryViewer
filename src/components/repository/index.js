@@ -1,11 +1,30 @@
 import styled from 'styled-components';
 
-//Componentes sempre comecam com titulo maiusculo
-const repository = styled.div`
-  background: rgba(0,0,0,0.8);
-  border-radius: 8px;
+export function RepositoryComponent(props) {
+  
+  if(props.list === 'undefined') {
+    props.list = [];
+  }
 
-  padding: 16px;
+  return (
+    <>
+      <RepositoryComponent.wrapper>
+      <ul className="repository-component">
+        {props.list.map((itemAtual) => {
+            return (
+              <li key={itemAtual.id}>
+                <a href={itemAtual.html_url} >
+                  <span>{itemAtual.full_name}</span>
+                </a>
+              </li>
+            )}
+          )}
+      </ul>
+      </RepositoryComponent.wrapper>
+    </>
+  )
+}
+RepositoryComponent.wrapper = styled.div`
+  background-color: #ffffff;
+  padding: 5px;
 `; 
-
-export default repository;

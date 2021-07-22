@@ -1,11 +1,30 @@
 import styled from 'styled-components';
 
-//Componentes sempre comecam com titulo maiusculo
-const branch = styled.div`
-  background: rgba(0,0,0,0.8);
-  border-radius: 0px;
-  width: 100%;
-  padding: 16px;
-`; 
+export function BranchComponent(props) {
+  
+  if(props.list === 'undefined') {
+    props.list = [];
+  }
 
-export default branch;
+  return (
+    <>
+      <BranchComponent.wrapper>
+      <ul className="branch-component">
+        {props.list.map((itemAtual) => {
+            return (
+              <li key={itemAtual.id}>
+                <a href={itemAtual.html_url} >
+                  <span>{itemAtual.full_name}</span>
+                </a>
+              </li>
+            )}
+          )}
+      </ul>
+      </BranchComponent.wrapper>
+    </>
+  )
+}
+BranchComponent.wrapper = styled.div`
+  background-color: #ffffff;
+  padding: 5px;
+`; 
